@@ -1,0 +1,50 @@
+[
+  {
+    "numero": 1,
+    "titulo": "Lonely Day",
+    "cancion": "songs/song1.mp3",
+    "imagen": "img/img1.jfif",
+    "cantante": "System of a Down",
+    "año": 2006
+  },
+  {
+    "numero": 2,
+    "titulo": "Boys Don't Cry",
+    "cancion": "songs/song2.mp3",
+    "imagen": "img/img2.jfif",
+    "cantante": "The Cure",
+    "año": 1979
+  },
+  {
+    "numero": 3,
+    "titulo": "Dreams",
+    "cancion": "songs/song3.mp3",
+    "imagen": "img/img3.jfif",
+    "cantante": "Fleetwood Mac",
+    "año": 1977
+  },
+  {
+    "numero": 4,
+    "titulo": "Something in the Way",
+    "cancion": "songs/song4.mp3",
+    "imagen": "img/img4.jfif",
+    "cantante": "Nirvana",
+    "año": 1991
+  },
+  {
+    "numero": 5,
+    "titulo": "Creep",
+    "cancion": "songs/song5.mp3",
+    "imagen": "img/img5.jfif",
+    "cantante": "Radiohead",
+    "año": 1992
+  },
+  {
+    "numero": 6,
+    "titulo": "So Lonely",
+    "cancion": "songs/song6.mp3",
+    "imagen": "img/img6.jfif",
+    "cantante": "The Police",
+    "año": 1978
+  }
+]

@@ -1,7 +1,5 @@
 let n_cancion = 1;
 let ruta_cancion = `songs/song${n_cancion}.mp3`;
-let boton_play = document.getElementById("botonPlay");
-
 let sound;
 
 function empezarMusica() {
