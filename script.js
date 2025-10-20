@@ -9,6 +9,7 @@ const cargar_json = async () => {
 
     info.forEach(cancion => {
         console.log(cancion.cancion);
+        console.log(cancion.titulo);
     });
 
     console.log(info);
@@ -36,6 +37,9 @@ function empezarMusica() {
 
     sound.play();
     console.log("Reproduciendo: ", ruta_cancion);
+
+    let portada = document.getElementById("imagen_cancion");
+    portada.src = info[n_cancion].imagen;
 }
 
 function pararMusica() {
@@ -52,7 +56,6 @@ function siguienteCancion() {
 
     n_cancion++;
 
-    //check q no te salgas del array de canciones
     if (n_cancion >= info.length) {
         n_cancion = 0;
     }
@@ -61,8 +64,6 @@ function siguienteCancion() {
     empezarMusica();
 }
 
-
-
 function previaCancion() {
     if (sound) {
         sound.stop();
@@ -70,7 +71,6 @@ function previaCancion() {
 
     n_cancion--;
 
-    //check q no te salgas del array de canciones
     if (n_cancion < 0) {
         n_cancion = info.length - 1;
     }
@@ -78,4 +78,3 @@ function previaCancion() {
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
 }
-
