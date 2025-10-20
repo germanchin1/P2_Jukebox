@@ -52,8 +52,6 @@ function siguienteCancion() {
 
     n_cancion++;
 
-
-
     //check q no te salgas del array de canciones
     if (n_cancion >= info.length) {
         n_cancion = 0;
@@ -62,3 +60,22 @@ function siguienteCancion() {
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
 }
+
+
+
+function previaCancion() {
+    if (sound) {
+        sound.stop();
+    }
+
+    n_cancion--;
+
+    //check q no te salgas del array de canciones
+    if (n_cancion < 0) {
+        n_cancion = info.length - 1;
+    }
+
+    console.log("Poniendo: ", n_cancion);
+    empezarMusica();
+}
+
