@@ -1,11 +1,28 @@
-let n_cancion = 1;
-let ruta_cancion = `songs/song${n_cancion}.mp3`;
+let canciones = [];
+let info = [];
+let n_cancion = 0;
 let sound;
 
+const cargar_json = async () => {
+    let response = await fetch('data.json');
+    info = await response.json();
+
+    info.forEach(cancion => {
+        console.log(cancion.cancion);
+    });
+
+    console.log(info);
+};
+
+cargar_json();
+
 function empezarMusica() {
+    if (info.length === 0) {
+        console.log("Data JSON sin cargar");
+        return;
+    }
 
-
-    ruta_cancion = `songs/song${n_cancion}.mp3`;
+    let ruta_cancion = info[n_cancion].cancion;
 
     if (sound) {
         sound.stop();
@@ -17,21 +34,31 @@ function empezarMusica() {
         loop: false,
     });
 
-
     sound.play();
     console.log("Reproduciendo: ", ruta_cancion);
 }
 
 function pararMusica() {
-
-    sound.pause();
-    console.log("stop");
+    if (sound) {
+        sound.pause();
+        console.log("Pausado");
+    }
 }
 
-
 function siguienteCancion() {
-    sound.stop();
+    if (sound) {
+        sound.stop();
+    }
+
     n_cancion++;
+
+
+
+    //check q no te salgas del array de canciones
+    if (n_cancion >= info.length) {
+        n_cancion = 0;
+    }
+
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
 }
