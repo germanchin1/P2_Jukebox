@@ -39,13 +39,26 @@ function empezarMusica() {
     console.log("Reproduciendo: ", ruta_cancion);
 
     let portada = document.getElementById("imagen_cancion");
-    portada.src = info[n_cancion].imagen;
+    let vinyl = document.getElementById("vinyl");
+    if (info[n_cancion].imagen) {
+        portada.src = info[n_cancion].imagen;
+        vinyl.src = info[n_cancion].imagen;
+    } else {
+        portada.removeAttribute('src');
+        vinyl.removeAttribute('src');
+    }
+
+    if (vinyl) vinyl.classList.add('spinning');
 }
 
 function pararMusica() {
     if (sound) {
         sound.pause();
         console.log("Pausado");
+        
+
+        let vinyl = document.getElementById('vinyl');
+        if (vinyl) vinyl.classList.remove('spinning');
     }
 }
 

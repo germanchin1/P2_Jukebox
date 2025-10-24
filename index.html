@@ -7,12 +7,20 @@
     <script src="script.js" defer></script>
     <link rel="shortcut icon" href="favicon.ico" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="botonStop" onclick="previaCancion()">Anterior</button>
-    <button id="botonPlay" onclick="empezarMusica()">Play</button>
-    <button id="botonStop" onclick="pararMusica()">Stop</button>
-    <button id="botonStop" onclick="siguienteCancion()">Siguiente</button>
-    <img height="200px" id="imagen_cancion">
+    <div class="controls">
+        <button id="botonPrev" aria-label="Anterior" onclick="previaCancion()">Anterior</button>
+        <button id="botonPlay" aria-label="Reproducir" onclick="empezarMusica()">Play</button>
+        <button id="botonStop" aria-label="Detener" onclick="pararMusica()">Stop</button>
+        <button id="botonNext" aria-label="Siguiente" onclick="siguienteCancion()">Siguiente</button>
+    </div>
+
+    <div class="cover" aria-hidden="false">
+        <img id="imagen_cancion" class="cover-bg" alt="Carátula de la canción (fondo)">
+        <img id="vinyl" class="vinyl" alt="Vinilo girando">
+    </div>
+    <input type="range" name="volume" id="">
 </body>
 </html>
