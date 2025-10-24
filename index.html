@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jukebox</title>
     <script src="script.js" defer></script>
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="icono.ico" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,6 +21,6 @@
         <img id="imagen_cancion" class="cover-bg" alt="Carátula de la canción (fondo)">
         <img id="vinyl" class="vinyl" alt="Vinilo girando">
     </div>
-    <input type="range" name="volume" id="volume" class="volume" min="0" max="1" step="0.01" value="0.5" aria-label="Control de volumen" onchange="volumen(this.value)">
+    <input type="range" name="volume" id="volume" class="volume" min="0" max="1" step="0.01" aria-label="Control de volumen" onchange="volumen(value)">VOLUMEN
 </body>
 </html>

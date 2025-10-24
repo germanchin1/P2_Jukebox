@@ -15,6 +15,9 @@ const cargar_json = async () => {
     console.log(info);
 };
 
+
+
+
 cargar_json();
 
 function empezarMusica() {
@@ -38,6 +41,9 @@ function empezarMusica() {
     sound.play();
     console.log("Reproduciendo: ", ruta_cancion);
 
+
+
+    //VINILO GIRANDO ¿?
     let portada = document.getElementById("imagen_cancion");
     let vinyl = document.getElementById("vinyl");
     if (info[n_cancion].imagen) {
@@ -51,16 +57,21 @@ function empezarMusica() {
     if (vinyl) vinyl.classList.add('spinning');
 }
 
+
+
+
 function pararMusica() {
     if (sound) {
         sound.pause();
         console.log("Pausado");
         
-
+        //VINILO PARADO ¿?
         let vinyl = document.getElementById('vinyl');
         if (vinyl) vinyl.classList.remove('spinning');
     }
 }
+
+
 
 function siguienteCancion() {
     if (sound) {
@@ -77,6 +88,8 @@ function siguienteCancion() {
     empezarMusica();
 }
 
+
+
 function previaCancion() {
     if (sound) {
         sound.stop();
@@ -91,6 +104,8 @@ function previaCancion() {
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
 }
+
+
 
 function volumen(valor){
     if (sound) {
