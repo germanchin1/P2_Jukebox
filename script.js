@@ -91,3 +91,10 @@ function previaCancion() {
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
 }
+
+function volumen(valor){
+    if (sound) {
+        sound.volume(valor);
+        console.log(valor)
+    }
+}
