@@ -1,0 +1,14 @@
+[
+  {
+    "numero": 1,
+    "nombre": "Radio Latina",
+    "imagen": "imgRadio/radio1.jpg",
+    "link": "https://eu1.lhdserver.es:9035/stream"
+  },
+  {
+    "numero": 2,
+    "nombre": "La Mega España",
+    "imagen": "imgRadio/radio2.jpg",
+    "link": "http://s8-webradio.rockantenne.de/70er-pop/stream/mp3"
+  }
+]

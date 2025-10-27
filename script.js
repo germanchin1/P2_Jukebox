@@ -123,3 +123,48 @@ function cambiarTiempo(value){
         console.log("Tiempo cambiado a: ", nuevo_tiempo);
     }
 }
+
+
+
+let soundRadio;
+
+const cargar_jsonRadios = async () => {
+    let response = await fetch('data_radios.json');
+    info = await response.json();
+
+    info.forEach(radio => {
+        console.log(radio.nombre);
+        console.log(radio.link); // corregido: antes era "radio.url"
+    });
+
+    console.log(info);
+};
+
+// === Función para reproducir la radio seleccionada ===
+function Radio(numeroRadio) {
+    // Si ya hay una radio sonando, la detenemos
+    if (soundRadio) {
+        soundRadio.stop();
+    }
+
+    // Buscar la radio según su número en el JSON
+    const radioSeleccionada = info.find(r => r.numero === numeroRadio);
+
+    if (!radioSeleccionada) {
+        console.error("No se encontró la radio con número:", numeroRadio);
+        return;
+    }
+
+    // Crear el sonido con Howler
+    soundRadio = new Howl({
+        src: [info.link],
+        html5: true,    // necesario para streams online
+        autoplay: true,
+        loop: false
+    });
+
+    console.log("Reproduciendo:", radioSeleccionada.nombre);
+}
+
+// === Llamada inicial para cargar el JSON ===
+cargar_jsonRadios();
