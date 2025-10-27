@@ -62,8 +62,9 @@ function empezarMusica() {
 
 function pararMusica() {
     if (sound) {
+        console.log
         sound.pause();
-        console.log("Pausado");
+        console.log("Pausado", sound);
         
         //VINILO PARADO ¿?
         let vinyl = document.getElementById('vinyl');
@@ -107,9 +108,18 @@ function previaCancion() {
 
 
 
-function volumen(valor){
+function volumen(value){
     if (sound) {
-        sound.volume(valor);
-        console.log(valor)
+        sound.volume(value);
+        console.log(value);
+    }
+}
+
+function cambiarTiempo(value){
+    if (sound) {
+        let duracion = sound.duration();
+        let nuevo_tiempo = duracion * value;
+        sound.seek(nuevo_tiempo);
+        console.log("Tiempo cambiado a: ", nuevo_tiempo);
     }
 }
