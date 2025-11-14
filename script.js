@@ -38,7 +38,10 @@ function empezarMusica() {
             // La duración ya está disponible aquí
             const duracion = sound.duration();
             const tiempo_aleatorio = Math.random() * duracion;
-            
+            while(tiempo_aleatorio > duracion - 5){ y
+                tiempo_aleatorio = Math.random() * duracion;
+                console.log("Recalculando tiempo random:", tiempo_aleatorio);
+            }
             sound.play();
             sound.seek(tiempo_aleatorio);
             console.log("Tiempo random inicial:", tiempo_aleatorio);
@@ -49,9 +52,6 @@ function empezarMusica() {
 
 
     duracion_cancion = sound.duration();
-
-
-    cincoSegundosRandom(); // Avanzar 5 segundos al empezar
 
     sound.play();
     console.log("Reproduciendo: ", ruta_cancion);
