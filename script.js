@@ -2,6 +2,7 @@ let canciones = [];
 let info = [];
 let n_cancion = 0;
 let sound;
+let duracion_cancion;
 
 const cargar_json = async () => {
     let response = await fetch('data.json');
@@ -10,6 +11,7 @@ const cargar_json = async () => {
     info.forEach(cancion => {
         console.log(cancion.cancion);
         console.log(cancion.titulo);
+        console.log("-")
     });
 
     console.log(info);
@@ -21,10 +23,6 @@ const cargar_json = async () => {
 cargar_json();
 
 function empezarMusica() {
-    if (info.length === 0) {
-        console.log("Data JSON sin cargar");
-        return;
-    }
 
     let ruta_cancion = info[n_cancion].cancion;
 
@@ -32,14 +30,35 @@ function empezarMusica() {
         sound.stop();
     }
 
-    sound = new Howl({
+  sound = new Howl({
         src: [ruta_cancion],
         autoplay: false,
         loop: false,
+        onload: function () {
+            // La duración ya está disponible aquí
+            const duracion = sound.duration();
+            const tiempo_aleatorio = Math.random() * duracion;
+            
+            sound.play();
+            sound.seek(tiempo_aleatorio);
+            console.log("Tiempo random inicial:", tiempo_aleatorio);
+
+           
+        }
     });
+
+
+    duracion_cancion = sound.duration();
+
+
+    cincoSegundosRandom(); // Avanzar 5 segundos al empezar
 
     sound.play();
     console.log("Reproduciendo: ", ruta_cancion);
+    console.log("Título: ", info[n_cancion].titulo);
+
+    console.log("Duración: ", duracion_cancion);
+
 
 
 
@@ -56,8 +75,6 @@ function empezarMusica() {
 
     if (vinyl) vinyl.classList.add('spinning');
 }
-
-
 
 
 function pararMusica() {
@@ -121,12 +138,19 @@ function cambiarTiempo(value){
         let duracion = sound.duration();
         let nuevo_tiempo = duracion * value;
         sound.seek(nuevo_tiempo);
-        console.log("Tiempo cambiado a: ", nuevo_tiempo);
+        console.log("Tiempo Actual ", nuevo_tiempo);
     }
 }
 
 
 
+
+
+
+
+
+
+/*=== Cargar JSON de radios ===/
 let soundRadio;
 
 let radios = [];
@@ -192,3 +216,4 @@ function activarRadio(){
         Radio(radios[0].numero);
     }
 }
+    /*=== Fin Cargar JSON de radios ===/*/
