@@ -104,6 +104,7 @@ function previaCancion() {
 
     console.log("Poniendo: ", n_cancion);
     empezarMusica();
+
 }
 
 
@@ -128,43 +129,66 @@ function cambiarTiempo(value){
 
 let soundRadio;
 
+let radios = [];
+
 const cargar_jsonRadios = async () => {
-    let response = await fetch('data_radios.json');
-    info = await response.json();
+    // detener reproducción de pistas si están sonando
+    if (sound) sound.stop();
 
-    info.forEach(radio => {
-        console.log(radio.nombre);
-        console.log(radio.link); // corregido: antes era "radio.url"
-    });
+    try {
+        let response = await fetch('data_radios.json');
+        radios = await response.json();
 
-    console.log(info);
+        radios.forEach(radio => {
+            console.log('Radio cargada:', radio.numero, radio.nombre, radio.link);
+        });
+
+        console.log('Radios:', radios);
+    } catch (err) {
+        console.error('Error cargando radios:', err);
+        radios = [];
+    }
 };
 
 // === Función para reproducir la radio seleccionada ===
 function Radio(numeroRadio) {
-    // Si ya hay una radio sonando, la detenemos
     if (soundRadio) {
         soundRadio.stop();
     }
-
-    // Buscar la radio según su número en el JSON
-    const radioSeleccionada = info.find(r => r.numero === numeroRadio);
-
+    const radioSeleccionada = radios.find(r => r.numero === numeroRadio);
     if (!radioSeleccionada) {
-        console.error("No se encontró la radio con número:", numeroRadio);
+        console.error('No se encontró la radio con número:', numeroRadio);
         return;
     }
 
-    // Crear el sonido con Howler
-    soundRadio = new Howl({
-        src: [info.link],
-        html5: true,    // necesario para streams online
-        autoplay: true,
-        loop: false
-    });
+    // Crear el sonido con Howler usando la URL de la radio seleccionada
+    try {
+        soundRadio = new Howl({
+            src: [radioSeleccionada.link],
+            html5: true, // necesario para streams online
+            autoplay: true,
+            loop: true
+        });
 
-    console.log("Reproduciendo:", radioSeleccionada.nombre);
+        console.log('Reproduciendo radio:', radioSeleccionada.nombre, radioSeleccionada.link);
+    } catch (err) {
+        console.error('Error creando Howl para la radio:', err);
+    }
 }
 
 // === Llamada inicial para cargar el JSON ===
+// cargar radios al inicio para tenerlas disponibles
 cargar_jsonRadios();
+
+// función auxiliar llamada desde el botón "Activar Radio"
+function activarRadio(){
+    if (radios.length === 0) {
+        // si aún no se cargaron, cargar y reproducir la primera si existe
+        cargar_jsonRadios().then(()=>{
+            if (radios.length>0) Radio(radios[0].numero);
+        });
+    } else {
+        // reproducir la primera radio por defecto
+        Radio(radios[0].numero);
+    }
+}
