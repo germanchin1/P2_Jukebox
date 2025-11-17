@@ -3,6 +3,8 @@ let info = [];
 let n_cancion = 0;
 let sound;
 let duracion_cancion;
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 
 const cargar_json = async () => {
     let response = await fetch('data.json');
@@ -34,19 +36,19 @@ function empezarMusica() {
         src: [ruta_cancion],
         autoplay: false,
         loop: false,
-        onload: function () {
-            // La duración ya está disponible aquí
+        onload: async function () {
             const duracion = sound.duration();
             const tiempo_aleatorio = Math.random() * duracion;
-            while(tiempo_aleatorio > duracion - 5){ y
+            while(tiempo_aleatorio > duracion - 5){ 
                 tiempo_aleatorio = Math.random() * duracion;
-                console.log("Recalculando tiempo random:", tiempo_aleatorio);
-            }
-            sound.play();
-            sound.seek(tiempo_aleatorio);
-            console.log("Tiempo random inicial:", tiempo_aleatorio);
-
-           
+            }  
+                console.log("Empieza en ", tiempo_aleatorio);
+                sound.seek(tiempo_aleatorio);
+                sound.play();
+                await sleep(5000);
+                sound.stop();
+                console.log("Acaba en", tiempo_aleatorio + 5);
+                
         }
     });
 
